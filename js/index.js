@@ -31,13 +31,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for (let i = 0; i < myLibrary.length; i++) {
             let bookCard = document.createElement('div');
-            bookCard.className = 'book';
+            bookCard.className = 'col';
             bookCard.innerHTML = `
-                <h4 class="card-title">${myLibrary[i].title}</h5>
-                <p class="card-text">${myLibrary[i].author}</p>
-                <p class="card-text">${myLibrary[i].pages} pages</p>
-                <p class="card-text">Current Page: ${myLibrary[i].currentPage}</p>
-            `;
+            <div class="book">
+                <div class="book-top">
+                    <h3 class="book-title">${myLibrary[i].title}</h3>
+                    <p class="book-author">Author: ${myLibrary[i].author}</p>
+                </div>
+                
+                <div class="book-bottom">
+                    <div class="book-progress">
+                        <p class="pages-read">Current page: ${myLibrary[i].currentPage} / ${myLibrary[i].pages}</p>
+                        <div class="progress-bar"></div>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="bookCompleted${i}" ${myLibrary[i].completed ? 'checked' : ''}>
+                        <label class="form-check-label" for="bookCompleted${i}">Completed</label>
+                    </div>
+                </div>
+            </div>
+        `;
+
             bookList.appendChild(bookCard);
         }
     }
