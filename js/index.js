@@ -38,15 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     <h3 class="book-title">${myLibrary[i].title}</h3>
                     <p class="book-author">Author: ${myLibrary[i].author}</p>
                 </div>
-                
                 <div class="book-bottom">
                     <div class="book-progress">
                         <p class="pages-read">Current page: ${myLibrary[i].currentPage} / ${myLibrary[i].pages}</p>
-                        <div class="progress-bar"></div>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="bookCompleted${i}" ${myLibrary[i].completed ? 'checked' : ''}>
-                        <label class="form-check-label" for="bookCompleted${i}">Completed</label>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="${myLibrary[i].currentPage}" aria-valuemin="0" aria-valuemax="${myLibrary[i].pages}"></div>
+                        </div>
                     </div>
                 </div>
             </div>
