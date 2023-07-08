@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('currentPage').value = "";
     }
 
+    function RemoveBookFromLibrary() {
+        const bookIndex = this.getAttribute('data-book-index');
+        myLibrary.splice(bookIndex, 1);
+        displayBooks();
+    }
+
     function displayBooks() {
         const bookList = document.getElementById('bookList');
         bookList.innerHTML = '';
@@ -37,17 +43,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="book-top">
                     <h3 class="book-title">${myLibrary[i].title}</h3>
                     <p class="book-author">Author: ${myLibrary[i].author}</p>
+                    <button type="button" class="btn btn-danger delete-book">Remove Book</button>
                 </div>
+                <hr style="margin: -20px; color: gray;">
                 <div class="book-bottom">
                     <div class="book-progress">
                         <p class="pages-read">Current page: ${myLibrary[i].currentPage} / ${myLibrary[i].pages}</p>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated w-75" role="progressbar" aria-valuenow="${myLibrary[i].currentPage}" aria-valuemin="0" aria-valuemax="${myLibrary[i].pages}"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="${myLibrary[i].currentPage}" aria-valuemin="0" aria-valuemax="${myLibrary[i].pages}"></div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
+            let deleteBtn = bookCard.querySelector('.delete-book');
+            deleteBtn.setAttribute('data-book-index', i);
+            deleteBtn.addEventListener('click', RemoveBookFromLibrary);
 
             bookList.appendChild(bookCard);
         }
